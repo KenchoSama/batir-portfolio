@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion } from "framer-motion";
+import { Link } from 'react-router-dom';
 
 const PortfolioSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(3); 
@@ -23,19 +24,26 @@ const PortfolioSlider = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-8 py-6 overflow-x-hidden">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -50 }}
+      transition={{ duration: 0.5 }}
+      className="max-w-6xl mx-auto px-8 overflow-x-hidden"
+    >
       {/* Header */}
       <div className="mb-2">
-        <h1 className="text-xl font-normal text-gray-800">Batir Carrera</h1>
+        <h1 className="text-sm font-normal text-gray-800">Batir Carrera</h1>
       </div>
 
       {/* Main Display */}
-      <div className="space-y-2 mb-32">
+      <Link to={'/product/1'}>
+      <div className="space-y-2 mb-20">
         <p className="text-center text-sm text-gray-600">project name</p>
         <div className="relative group">
-          <div className="relative h-full w-[40vw] mx-auto overflow-hidden">
+          <div className="relative h-full w-[28vw] mx-auto overflow-hidden">
             <div  
-              className="flex transition-transform duration-500 h-[350px]"
+              className="flex transition-transform duration-500 h-[40vh]"
               style={{ transform: `translateX(-${currentSlide * 100}%)` }}
             >
               {images.map((img, index) => (
@@ -43,31 +51,18 @@ const PortfolioSlider = () => {
                   key={index}
                   src={img}
                   alt={`Project view ${index + 1}`}
-                  className="w-full h-full object-cover flex-shrink-0"
+                  className="w-full h-full object-cover object-top flex-shrink-0"
                 />
               ))}
             </div>
-            
-            {/* <button
-              onClick={prevSlide}
-              className="absolute left-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-white/80 p-2 rounded-full shadow-lg"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            
-            <button
-              onClick={nextSlide}
-              className="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-white/80 p-2 rounded-full shadow-lg"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button> */}
           </div>
         </div>
         <p className="text-center text-sm text-gray-600">location</p>
       </div>
+      </Link>
 
       {/* Perspective Thumbnails */}
-      <div className="relative h-48 ">
+      <div className="relative h-24 select-none">
         <div className="flex justify-center items-center gap-32 w-full">
           {images.map((img, index) => {
             const isCenter = index === currentSlide;
@@ -111,23 +106,8 @@ const PortfolioSlider = () => {
           })}
         </div>
       </div>
-
-      {/* Navigation Menu */}
-      <nav>
-        <ul className="flex gap-8 text-sm text-gray-600">
-          {['contact', 'work', 'education', 'certificates', 'bio'].map((item) => (
-            <li key={item}>
-              <a
-                href={`#${item}`}
-                className="hover:text-gray-900 transition-colors"
-              >
-                {item}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </div>
+      
+    </motion.div>
   );
 };
 
