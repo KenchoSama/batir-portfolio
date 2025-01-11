@@ -37,7 +37,7 @@ const PortfolioSlider = () => {
       </div>
 
       {/* Main Display */}
-      <Link to={'/product/1'}>
+      <Link to={'/product'}>
       <div className="space-y-2 mb-20">
         <p className="text-center text-sm text-gray-600">project name</p>
         <div className="relative group">
