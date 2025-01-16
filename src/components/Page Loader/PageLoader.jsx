@@ -1,10 +1,48 @@
-import React from "react";
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
 import "./Loader.css"; // Add custom styles for the loader
 
 const PageLoader = () => {
+	const loaderRef = useRef(null);
+	const pillarsRef = useRef([]);
+  
+	useEffect(() => {
+	  // Create timeline for coordinated animation
+	  const tl = gsap.timeline();
+  
+	  // Animate each pillar from bottom to top with stagger
+	  tl.fromTo(
+		pillarsRef.current,
+		{
+		  yPercent: 100, // Start position (bottom of screen)
+		},
+		{
+		  yPercent: -100, // End position (top of screen)
+		  duration: 1,
+		  ease: "power2.inOut",
+		  stagger: 0.2, // Delay between each pillar
+		}
+	  );
+  
+
+	}, []);
+
+
   return (
 <>		
 
+<div
+      ref={loaderRef}
+      className="flex fixed top-0 z-30 w-full h-[200vh]  pointer-events-none"
+    >
+      {[...Array(5)].map((_, index) => (
+        <div
+          key={index}
+          ref={(el) => (pillarsRef.current[index] = el)}
+          className="w-[20%] bg-black h-screen"
+        />
+      ))}
+    </div>
 <div class="socket">
 			<div class="gel center-gel">
 				<div class="hex-brick h1"></div>

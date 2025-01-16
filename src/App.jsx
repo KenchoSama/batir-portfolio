@@ -40,14 +40,6 @@ const App = () => {
         
       ) : (
         <AnimatePresence mode="wait">
-          {/* <div className="flex fixed top-0 z-30 w-full h-screen">
-              <div className="w-[20%] bg-black up-1 translate-y-full"></div>
-              <div className="w-[20%] bg-black up-2 translate-y-full"></div>
-              <div className="w-[20%] bg-black up-3 translate-y-full"></div>
-              <div className="w-[20%] bg-black up-4 translate-y-full"></div>
-              <div className="w-[20%] bg-black up-5 translate-y-full"></div>
-            </div> */}
-            
           <div className="max-w-6xl mx-auto px-6 py-2 bg-white "  ref={loaderSpan} >
             <Routes key={location.pathname} location={location}>
               <Route path="/" element={<PortfolioSlider />} />
