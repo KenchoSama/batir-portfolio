@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 
-const defaultItems = ["about", "projects", "education", "certificates", "bio"];
+const defaultItems = ["about", "projects", "certificates"];
 
 const Navbar = ({ items = defaultItems }) => {
   return (

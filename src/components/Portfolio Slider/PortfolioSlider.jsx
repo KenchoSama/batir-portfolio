@@ -212,8 +212,8 @@ const PortfolioSlider = () => {
                 <img
                   src={project.thumbnail}
                   alt={project.name}
-                  className={`w-full h-full object-cover transition-all duration-500 ${
-                    isCenter ? "ring-2 ring-blue-500" : ""
+                  className={`w-full h-full object-cover transition-all ring-1 duration-500 ${
+                    isCenter ? "ring-black" : "ring-zinc-500 "
                   }`}
                 />
               </div>
