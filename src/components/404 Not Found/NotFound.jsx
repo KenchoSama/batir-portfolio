@@ -7,6 +7,7 @@ const NotFound = () => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -50 }}
       transition={{ duration: 0.5 }}
+      className='w-full h-[90vh] flex items-center justify-center'
     >
         404 Error
     </motion.div>

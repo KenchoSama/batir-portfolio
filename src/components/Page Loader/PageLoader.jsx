@@ -4,6 +4,7 @@ import "./Loader.css"; // Add custom styles for the loader
 const PageLoader = () => {
   return (
 <>		
+
 <div class="socket">
 			<div class="gel center-gel">
 				<div class="hex-brick h1"></div>
