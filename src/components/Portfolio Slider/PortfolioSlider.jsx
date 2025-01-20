@@ -130,27 +130,28 @@ const PortfolioSlider = () => {
     setCurrentSlide((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
   };
 
-  return (
+  return (<>
+      {/* Header */}
+      <div className="mb-2">
+        <h1 className="text-sm font-normal text-gray-800">Batir Carrera</h1>
+      </div>
+  
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -50 }}
       transition={{ duration: 0.5 }}
-      className="max-w-6xl mx-auto px-8 overflow-x-hidden"
+      className="max-w-6xl mx-auto px-8 overflow-x-hidden flex flex-col items-center justify-center md:justify-start min-h-screen"
     >
-      {/* Header */}
-      <div className="mb-2">
-        <h1 className="text-sm font-normal text-gray-800">Batir Carrera</h1>
-      </div>
 
       {/* Main Display */}
       <Link to={`/project/${projects[currentSlide].id}`}>
-        <div className="space-y-2 mb-20">
-          <p className="text-center text-sm text-gray-600">
+        <div className="space-y-2  mb-20">
+          <p className="text-center text-4xl md:text-lg text-gray-600">
             {projects[currentSlide].name}
           </p>
           <div className="relative group">
-            <div className="relative h-full w-[28vw] mx-auto overflow-hidden">
+            <div className="relative h-full w-[90vw] border-2 lg:w-[28vw] mx-auto overflow-hidden">
               <div
                 className="flex transition-transform duration-500 h-[40vh]"
                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -199,7 +200,7 @@ const PortfolioSlider = () => {
             return (
               <div
                 key={index}
-                className="w-48 h-32 cursor-pointer p-2 transition-all duration-500 absolute"
+                className="w-32 h-20 lg:w-48 lg:h-32 cursor-pointer p-2 transition-all duration-500 absolute"
                 style={{
                   transform,
                   zIndex,
@@ -222,6 +223,7 @@ const PortfolioSlider = () => {
         </div>
       </div>
     </motion.div>
+    </>
   );
 };
 

@@ -13,7 +13,7 @@ const Navbar = ({ items = defaultItems }) => {
       exit={{ opacity: 0, y: -50 }}
       transition={{ duration: 0.5 }}
     >
-      <nav>
+      <nav className="fixed bottom-0 left-0 px-10 py-4 bg-white w-full border-t border-black">
         <ul className="flex gap-8 text-sm text-gray-600">
           {items.map((item) => (
             <li key={item}>

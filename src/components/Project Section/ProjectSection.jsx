@@ -29,7 +29,6 @@ const ProjectSection = ({ data = defaultData }) => {
   const [visibleCount, setVisibleCount] = useState(3);
   const hasMoreImages = data.thumbnails.length > visibleCount;
 
-  const controls = useDragControls();
 
   const handleLoadMore = () => {
     setVisibleCount((prevCount) => prevCount + 3);
@@ -65,11 +64,11 @@ const ProjectSection = ({ data = defaultData }) => {
       {project ? (
         <>
           <Link to={"/"} className="sticky top-4  gap-4  flex mt-3 ">
-            <FaArrowTurnUp className="-rotate-90 " />
-            <h1 className=" h-10 mb-6 text-sm font-normal text-gray-800">
+            <FaArrowTurnUp className="-rotate-90 mt-1 lg:mt-0 text-xl" />
+            <h1 className=" h-10 mb-6 text-2xl lg:text-sm font-normal text-gray-800">
               {project.id}
             </h1>
-            <h1 className=" h-10 mb-6 text-sm font-normal text-gray-800">
+            <h1 className=" h-10 mb-6 text-2xl lg:text-sm font-normal text-gray-800">
               {project.name}
             </h1>
           </Link>
@@ -79,19 +78,15 @@ const ProjectSection = ({ data = defaultData }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -50 }}
             transition={{ duration: 0.5 }}
-            className="max-w-6xl mx-auto relative px-8 overflow-x-hidden"
+            className="max-w-6xl mx-auto relative lg:px-8 overflow-x-hidden"
           >
             {/* Title */}
 
             {/* Main Image */}
             <motion.div
               whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              whileDrag={{ scale: 0.9, rotate: 10 }}
-              dragSnapToOrigin
               onClick={() => setSelectedImage(project.thumbnail)}
-              drag
-              className="mb-8 select-none h-[50vh] w-[40vw] mx-auto overflow-hidden shadow-lg"
+              className="mb-8 select-none h-[50vh] w-[80vw] lg:w-[40vw] mx-auto overflow-hidden shadow-lg"
             >
               <img
                 src={project.thumbnail}
@@ -108,17 +103,14 @@ const ProjectSection = ({ data = defaultData }) => {
             {/* Thumbnail Grid */}
             <div className="space-y-4">
               <div className="grid max-w-xl mx-auto grid-cols-3 place-items-center gap-8">
+                {console.log(project.images.length)}
                 {project.images
-                  .slice(0, project.images.length)
+                  .slice(0, visibleCount)
                   .map((thumb, index) => (
                     <motion.div
                       whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                      whileDrag={{ scale: 0.9, rotate: 10 }}
-                      dragSnapToOrigin
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      drag
                       key={index}
                       className="h-28 w-48 overflow-hidden shadow-md cursor-pointer"
                       onClick={() => setSelectedImage(thumb)} // Set the selected image
@@ -167,7 +159,7 @@ const ProjectSection = ({ data = defaultData }) => {
             </div>
 
             {/* Description Text */}
-            <div className="my-16 mx-auto max-w-3xl">
+            <div className="my-16 mx-auto max-w-7xl">
               <h1 className="text-3xl mb-4">Description :</h1>
               <p className="text-gray-700 leading-relaxed">
                 {project.description}
@@ -212,9 +204,10 @@ const ProjectSection = ({ data = defaultData }) => {
                 Back
               </h1>
             </Link>
-            <div className="grid grid-cols-4 gap-5 pb-10">
-              {projects.map((project) => (
-                <Link to={`/project/${project.id}`} className="p-3 border hover:bg-black hover:text-white transition-all">
+            <div className="grid lg:grid-cols-4 gap-5 pb-10">
+              {projects.map((project, index) => (
+                <Link to={`/project/${project.id}`} className="p-3 border-2 flex gap-3 border-black lg:border hover:bg-black hover:text-white transition-all">
+                  <p>{index + 1}</p>
                   <h1>{project.name}</h1>
                 </Link>
               ))}
