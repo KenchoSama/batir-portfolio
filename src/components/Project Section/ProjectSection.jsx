@@ -86,7 +86,7 @@ const ProjectSection = ({ data = defaultData }) => {
             <motion.div
               whileHover={{ scale: 1.1 }}
               onClick={() => setSelectedImage(project.thumbnail)}
-              className="mb-8 select-none h-[50vh] w-[80vw] lg:w-[40vw] mx-auto overflow-hidden shadow-lg"
+              className="mb-8 select-none h-[30vh] md:h-[50vh] w-[80vw] lg:w-[40vw] mx-auto overflow-hidden shadow-lg"
             >
               <img
                 src={project.thumbnail}
@@ -102,7 +102,7 @@ const ProjectSection = ({ data = defaultData }) => {
 
             {/* Thumbnail Grid */}
             <div className="space-y-4">
-              <div className="grid max-w-xl mx-auto grid-cols-3 place-items-center gap-8">
+              <div className="grid max-w-sm md:max-w-xl mx-auto grid-cols-2 md:grid-cols-3 place-items-center gap-8">
                 {console.log(project.images.length)}
                 {project.images
                   .slice(0, visibleCount)
