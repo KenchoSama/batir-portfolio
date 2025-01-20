@@ -63,7 +63,7 @@ const ProjectSection = ({ data = defaultData }) => {
     <>
       {project ? (
         <>
-          <Link to={"/"} className="sticky top-4  gap-4  flex mt-3 ">
+          <Link to={"/"} className="sticky top-0 pt-5  gap-4  flex mt-3 w-full z-20 bg-white">
             <FaArrowTurnUp className="-rotate-90 mt-1 lg:mt-0 text-xl" />
             <h1 className=" h-10 mb-6 text-2xl lg:text-sm font-normal text-gray-800">
               {project.id}
