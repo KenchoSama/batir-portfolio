@@ -1,6 +1,7 @@
 {
-  
-  "name": "batir-carrera-portfolio",
+  "homepage": "https://KenchoSama.github.io/batir-portfolio",
+
+  "name": "batir",
   
   "private": true,
   
@@ -17,7 +18,7 @@
   "predeploy": "npm run build",
   
     
-  "deploy": "gh-pages -d build",
+  "deploy": "gh-pages -d dist",
   
     
   "build": "vite build",
