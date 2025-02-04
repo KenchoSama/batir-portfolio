@@ -68,17 +68,7 @@ const CustomNavBar = () => {
                 Projects
               </Link>
             </li>
-            <li>
-              <Link
-                to="/certificates"
-                className={`font-bold text-white cursor-pointer hover:opacity-100 transition-opacity ${
-                  activeLink === "certificates" ? "opacity-100" : "opacity-75"
-                }`}
-                onClick={() => setActiveLink("certificates")}
-              >
-                Certificates
-              </Link>
-            </li>
+
             <li>
               <Link
                 to="/about"
@@ -89,6 +79,17 @@ const CustomNavBar = () => {
               >
                 About Me
               </Link>
+            </li>
+            {/* New Store Link */}
+            <li>
+              <a
+                href="https://www.lulu.com/shop/batir-carrera/batirs-portfolio/paperback/product-95e7gn5.html?q=Batir%27s+Portfolio&page=1&pageSize=4"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold text-white cursor-pointer hover:opacity-100 transition-opacity"
+              >
+                Store
+              </a>
             </li>
           </ul>
 

@@ -1,9 +1,8 @@
-
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { projects } from '../../libs/projects.js'
-
+import { projects } from "../../libs/projects.js";
+import "./Carousel.css";
 
 const PortfolioSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -16,51 +15,68 @@ const PortfolioSlider = () => {
     setCurrentSlide((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
   };
 
-  return (<>
+  const getCarouselStyle = (index) => {
+    const position = index - currentSlide;
+    const angle = position * 45; // Spacing between items
+    const translateZ = 400; // Spread items further apart
+
+    return {
+      transform: `rotateY(${angle}deg) translateZ(${translateZ}px)`, // Rotation and spacing
+      transition: "transform 0.5s ease-in-out", // Smooth transitions
+    };
+  };
+
+  return (
+    <>
       {/* Header */}
-      <div className="mb-2">
+      <div className="mb-6 mt-20 text-center"> {/* Increased top margin */}
         <h1 className="text-sm font-normal text-gray-800">Batir Carrera</h1>
       </div>
-  
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -50 }}
-      transition={{ duration: 0.5 }}
-      className="max-w-6xl mx-auto px-8 overflow-x-hidden flex flex-col items-center justify-center md:justify-start min-h-screen"
-    >
 
-      {/* Main Display */}
-      <Link to={`/project/${projects[currentSlide].id}`}>
-        <div className="space-y-2  mb-20">
-          <p className="text-center text-4xl md:text-lg text-gray-600">
-            {projects[currentSlide].name}
-          </p>
-          <div className="relative group">
-            <div className="relative h-full w-[90vw] border-2 lg:w-[28vw] mx-auto overflow-hidden">
+      {/* Carousel as Main Display */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -50 }}
+        transition={{ duration: 0.5 }}
+        className="max-w-6xl mx-auto px-8 overflow-x-hidden flex flex-col items-center h-[65vh] mt-8" // Increased margin-top
+      >
+        {/* Carousel */}
+        <div className="carousel mb-6">
+          <div className="carousel-inner">
+            {projects.map((project, index) => (
               <div
-                className="flex transition-transform duration-500 h-[40vh]"
-                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                key={index}
+                className={`carousel-item ${index === currentSlide ? "active" : ""}`}
+                style={{
+                  ...getCarouselStyle(index), // Rotation and spacing
+                  width: "300px", // Fixed width for all cards
+                  height: "500px", // Fixed height for all cards
+                }}
               >
-                {projects.map((project, index) => (
-                  <img
-                    key={index}
-                    src={project.thumbnail}
-                    alt={project.name}
-                    className="w-full h-full object-cover object-top flex-shrink-0"
-                  />
-                ))}
+                <Link to={`/project/${project.id}`} className="card">
+                  {/* Card Content */}
+                  <div className="bg-[#E3F2FD] p-4 rounded-lg flex flex-col items-center">
+                    <img
+                      src={project.thumbnail}
+                      alt={project.name}
+                      className="w-full h-3/4 object-cover rounded-lg shadow-lg"
+                    />
+                    <div className="bottom-section text-center mt-4">
+                      <h3 className="title text-sm font-bold text-black">
+                        {project.name}
+                      </h3>
+                    </div>
+                  </div>
+                </Link>
               </div>
-            </div>
+            ))}
           </div>
-          <p className="text-center text-sm text-gray-600">
-            {projects[currentSlide].location}
-          </p>
         </div>
-      </Link>
+      </motion.div>
 
       {/* Perspective Thumbnails */}
-      <div className="relative h-24 select-none">
+      <div className="relative h-20 select-none mt-20"> {/* Increased top margin */}
         <div className="flex justify-center items-center gap-32 w-full">
           {projects.map((project, index) => {
             const isCenter = index === currentSlide;
@@ -100,7 +116,7 @@ const PortfolioSlider = () => {
                   src={project.thumbnail}
                   alt={project.name}
                   className={`w-full h-full object-cover transition-all ring-1 duration-500 ${
-                    isCenter ? "ring-black" : "ring-zinc-500 "
+                    isCenter ? "ring-black" : "ring-zinc-500"
                   }`}
                 />
               </div>
@@ -108,7 +124,6 @@ const PortfolioSlider = () => {
           })}
         </div>
       </div>
-    </motion.div>
     </>
   );
 };
